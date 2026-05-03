@@ -107,7 +107,7 @@ cd /home/vladusald/University/Diplom/cloud-cost-comparator
 
 **Або вручну:**
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 📚 **Детальні Docker інструкції**: [DOCKER.md](DOCKER.md)
