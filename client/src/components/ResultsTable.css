@@ -1,0 +1,152 @@
+.results-table-container {
+  margin: 2rem 0;
+}
+
+.results-table-container h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.results-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.results-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.results-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.results-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+.results-table tbody tr.best-option {
+  background: #f0f7ff;
+}
+
+.provider-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  background: #4caf50;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.vm-type {
+  font-family: 'Courier New', monospace;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.total-cost {
+  font-size: 1.1rem;
+  color: #667eea;
+}
+
+.rank-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.rank-badge.rank-1 {
+  background: #4caf50;
+  color: white;
+}
+
+.rank-badge.rank-2 {
+  background: #ff9800;
+  color: white;
+}
+
+.rank-badge.rank-3 {
+  background: #f44336;
+  color: white;
+}
+
+.price-breakdown {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.price-breakdown h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.breakdown-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.breakdown-card h5 {
+  color: #667eea;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.breakdown-card p {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.breakdown-card .discount {
+  color: #4caf50;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .results-table th,
+  .results-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+}

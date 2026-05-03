@@ -1,0 +1,18 @@
+# Backend Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Копіюємо package.json та встановлюємо залежності
+COPY server/package*.json ./
+RUN npm install --production
+
+# Копіюємо код backend
+COPY server ./server
+COPY .env* ./
+
+# Відкриваємо порт
+EXPOSE 3001
+
+# Запускаємо backend
+CMD ["node", "server/index.js"]

@@ -1,0 +1,46 @@
+# Node modules
+node_modules
+client/node_modules
+npm-debug.log
+
+# Build files
+client/build
+.next
+out
+
+# Environment files (копіюються окремо)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git
+.git
+.gitignore
+
+# Documentation
+docs
+*.md
+!README.md
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Testing
+coverage
+.nyc_output
+
+# Cache
+.cache
+.parcel-cache

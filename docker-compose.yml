@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # MongoDB сервіс
+  mongodb:
+    image: mongo:6
+    container_name: cloud-comparator-mongodb
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=cloud-comparator
+    volumes:
+      - mongodb-data:/data/db
+    restart: unless-stopped
+    networks:
+      - cloud-comparator-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Backend сервіс
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cloud-comparator-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - MONGODB_URI=mongodb://mongodb:27017/cloud-comparator
+    env_file:
+      - .env
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - cloud-comparator-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/api/regions"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend сервіс
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: cloud-comparator-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - cloud-comparator-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  cloud-comparator-network:
+    driver: bridge
+
+# Volumes для збереження даних
+volumes:
+  mongodb-data:
+    driver: local
+  backend-data:
